@@ -1,0 +1,47 @@
+
+Employee_Details
+
+create table Employee_Details(emp_user_id bigint(50) primary key,emp_esi_id varchar(35) not null,emp_name varchar(35) not null, accenture_email_id varchar(35) not null,personal_email_id  varchar(35) not null,date_of_birth date not null,project_name  varchar(35) not null,technology_name  varchar(35) not null,mobile_number bigint(50) not null);
+
+App_details
+
+create table App_details(app_id bigint(50) primary key,app_desc varchar(35));
+
+Category_details
+
+create table Category_details(Category_id bigint(50) primary key,Category_desc varchar(35));
+
+User_Login
+
+create table User_Login(user_login_id bigint(50) AUTO_INCREMENT primary key,
+user_name varchar(35) not null,
+user_pwd varchar(35) not null,
+emp_user_id bigint(50) NOT NULL REFERENCES Employee_Details(emp_user_id)
+);
+
+Ticket_Status
+create table Ticket_Status(Status_id bigint(50) primary key,Status_desc varchar(35));
+
+create table Ticket_Status(Status_id bigint(50) primary key,Status_desc varchar(35));35
+
+Employee_Timesheet_Details()
+
+create table Employee_Timesheet_Details(time_sheet_id bigint(50) not null  REFERENCES Employee_timesheet(time_sheet_id),emp_user_id bigint(50) not null  REFERENCES Employee_Details(emp_user_id),primary key(time_sheet_id,emp_user_id)
+);
+
+04033692000
+
+Employee_Timesheet_Details
+
+create table Employee_timesheet(
+time_sheet_id bigint(50) AUTO_INCREMENT primary key,
+emp_user_id bigint(50) NOT NULL REFERENCES Employee_Details(emp_user_id),
+Status_id bigint(50) NOT NULL REFERENCES Ticket_Status(Status_id),
+Category_id bigint(50) NOT NULL REFERENCES Category_details(Category_id),
+app_id bigint(50) NOT NULL REFERENCES App_details(app_id),
+area varchar(35),td_date date not null,ticket_id  varchar(35),task_desc  varchar(35),td_hours bigint(50));
+
+
+
+insert into Employee_Details(emp_user_id,emp_esi_id,emp_name, accenture_email_id ,personal_email_id,date_of_birth,project_name,technology_name,mobile_number)
+values(11154932,"ef3298","prakash","prakash",1986-06-16,"phoenix","java",9966211999);
