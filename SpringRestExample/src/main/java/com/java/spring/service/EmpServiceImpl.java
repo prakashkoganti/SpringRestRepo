@@ -3,13 +3,9 @@ package com.java.spring.service;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-
-import javax.sound.sampled.Port;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +14,12 @@ import org.springframework.stereotype.Service;
 
 import com.java.spring.constants.PortalConstants;
 import com.java.spring.dao.EmpDao;
+import com.java.spring.dto.AppDetailsDto;
 import com.java.spring.dto.DropDownDto;
 import com.java.spring.dto.DsrDto;
 import com.java.spring.dto.Emp;
 import com.java.spring.dto.NavritiDto;
+import com.java.spring.dto.PortfolioDto;
 import com.java.spring.model.AppDetails;
 import com.java.spring.model.AreaDetails;
 import com.java.spring.model.CategoryDetails;
@@ -74,7 +72,7 @@ public class EmpServiceImpl implements EmpService {
 			userLogin.setCreatedTimestamp(new Date());
 			empData.setId(new Long(0));
 		}
-		Set<HobbiesDetails> hobbiesDetailsList = new HashSet<HobbiesDetails>();
+//		Set<HobbiesDetails> hobbiesDetailsList = new HashSet<HobbiesDetails>();
 		// HobbiesDetails hobbiesDetails = null;
 		// if (null != emp.getHobbies()) {
 		// for (String hobbie : emp.getHobbies()) {
@@ -265,7 +263,7 @@ public class EmpServiceImpl implements EmpService {
 			if (StringUtils.isNotBlank(empData.getMobileNumber())) {
 				emp.setMobile(empData.getMobileNumber());
 			}
-			if(null!=empData.getEmpAppDetails()){
+			if (null != empData.getEmpAppDetails()) {
 				emp.setAppId(empData.getEmpAppDetails().getId());
 				emp.setAppName(empData.getEmpAppDetails().getAppDesc());
 			}
@@ -299,7 +297,7 @@ public class EmpServiceImpl implements EmpService {
 		navritiDetails.setIdeationDate(date);
 		navritiDetails.setPortfolio(navritiDto.getPortfolio());
 		navritiDetails.setProblemStatement(navritiDto.getProblemStatement());
-		navritiDetails.setSapId(navritiDto.getSapId());
+		navritiDetails.setEmpId(navritiDto.getEmpId());
 		navritiDetails.setSavings(navritiDto.getSavings());
 		navritiDetails.setSolutionDescription(navritiDto.getSolutionDescription());
 		navritiDetails.setSubmissionDate(date);
@@ -308,7 +306,7 @@ public class EmpServiceImpl implements EmpService {
 		navritiDetails.setSubmittedBy(navritiDto.getSubmittedBy());
 		navritiDetails.setTechnology(navritiDto.getTechnology());
 		empDao.saveOrUpdateObject(navritiDetails);
-		return null;
+		return navritiDto;
 	}
 
 	@Override
@@ -324,7 +322,7 @@ public class EmpServiceImpl implements EmpService {
 			navritiDto.setComments(navritiDetails.getComments());
 			navritiDto.setCouncilReviewedDate(navritiDetails.getCouncilReviewedDate());
 			navritiDto.setElapsedTime(navritiDetails.getElapsedTime());
-			navritiDto.setSapId(navritiDetails.getSapId());
+			navritiDto.setEmpId(navritiDetails.getEmpId());
 			navritiDto.setIdeaClassification(navritiDetails.getIdeaClassification());
 			navritiDto.setIdeaId(navritiDetails.getIdeaId());
 			navritiDto.setIdeaStage(navritiDetails.getIdeaStage());
@@ -373,7 +371,7 @@ public class EmpServiceImpl implements EmpService {
 		navritiDto.setComments(navritiDetails.getComments());
 		navritiDto.setCouncilReviewedDate(navritiDetails.getCouncilReviewedDate());
 		navritiDto.setElapsedTime(navritiDetails.getElapsedTime());
-		navritiDto.setSapId(navritiDetails.getSapId());
+		navritiDto.setEmpId(navritiDetails.getEmpId());
 		navritiDto.setIdeaClassification(navritiDetails.getIdeaClassification());
 		navritiDto.setIdeaId(navritiDetails.getIdeaId());
 		navritiDto.setIdeaStage(navritiDetails.getIdeaStage());
@@ -393,22 +391,31 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	@Override
-	public Map<Long, String> getPortfolios() {
-		Map<Long, String> map = new HashMap<Long, String>();
+	public List<PortfolioDto> getPortfolios() {
+		List<PortfolioDto> portfolioDtos = new ArrayList<PortfolioDto>();
 		List<PortfolioDetails> list = empDao.getPortfolios();
+		PortfolioDto portfolioDto = null;
 		for (PortfolioDetails portfolioDetails : list) {
-			map.put(portfolioDetails.getId(), portfolioDetails.getPortfolioDesc());
+			portfolioDto = new PortfolioDto();
+			portfolioDto.setId(portfolioDetails.getId());
+			portfolioDto.setPortfolioDesc(portfolioDetails.getPortfolioDesc());
+			portfolioDto.setPortfolioMgr(portfolioDetails.getPortfolioMgr());
+			portfolioDtos.add(portfolioDto);
 		}
-		return map;
+		return portfolioDtos;
 	}
 
 	@Override
-	public Map<Long, String> getApps(Long id) {
-		Map<Long, String> map = new HashMap<Long, String>();
+	public List<AppDetailsDto> getApps(Long id) {
+		List<AppDetailsDto> appDetailsDtos = new ArrayList<AppDetailsDto>();
 		List<AppDetails> appDetailsList = empDao.getApps(id);
+		AppDetailsDto appDetailsDto = null;
 		for (AppDetails appDetails : appDetailsList) {
-			map.put(appDetails.getId(), appDetails.getAppDesc());
+			 appDetailsDto = new AppDetailsDto();
+			appDetailsDto.setId(appDetails.getId());
+			appDetailsDto.setAppDesc(appDetails.getAppDesc());
+			appDetailsDtos.add(appDetailsDto);
 		}
-		return map;
+		return appDetailsDtos;
 	}
 }

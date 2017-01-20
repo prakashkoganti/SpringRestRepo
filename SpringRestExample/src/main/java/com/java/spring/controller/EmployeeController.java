@@ -4,7 +4,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,10 +23,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.java.spring.constants.PortalConstants;
 import com.java.spring.constants.URIConstants;
+import com.java.spring.dto.AppDetailsDto;
 import com.java.spring.dto.DropDownDto;
 import com.java.spring.dto.DsrDto;
 import com.java.spring.dto.Emp;
 import com.java.spring.dto.NavritiDto;
+import com.java.spring.dto.PortfolioDto;
 import com.java.spring.dto.StatusDto;
 import com.java.spring.model.PersonalImage;
 import com.java.spring.service.EmpService;
@@ -244,13 +245,12 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = URIConstants.GET_PORTFOLIO, method = RequestMethod.GET)
-	public @ResponseBody Map<Long, String> getPortfolio() {
-		// Map<Integer,String> map=new HashMap<Integer,String>();
+	public @ResponseBody List<PortfolioDto> getPortfolio() {
 		return empService.getPortfolios();
 	}
 
 	@RequestMapping(value = URIConstants.GET_APPS, method = RequestMethod.GET)
-	public @ResponseBody Map<Long, String> getApps(@PathVariable("id") Long id) {
+	public @ResponseBody List<AppDetailsDto> getApps(@PathVariable("id") Long id) {
 		return empService.getApps(id);
 	}
 }

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class NavritiDto {
 
 	private Long ideaId;
-	private Long sapId;
+	private Long empId;
 	private String ideaStage;
 	private String stageOutCome;
 	private Date SubmissionDate;
@@ -43,18 +43,6 @@ public class NavritiDto {
 	 */
 	public void setIdeaId(Long ideaId) {
 		this.ideaId = ideaId;
-	}
-	/**
-	 * @return the sapId
-	 */
-	public Long getSapId() {
-		return sapId;
-	}
-	/**
-	 * @param sapId the sapId to set
-	 */
-	public void setSapId(Long sapId) {
-		this.sapId = sapId;
 	}
 	/**
 	 * @return the ideaStage
@@ -331,6 +319,12 @@ public class NavritiDto {
 	 */
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
+	}
+	public Long getEmpId() {
+		return empId;
+	}
+	public void setEmpId(Long empId) {
+		this.empId = empId;
 	}
 	
 }

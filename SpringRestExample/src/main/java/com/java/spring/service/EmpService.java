@@ -1,13 +1,14 @@
 package com.java.spring.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.java.spring.constants.PortalConstants;
+import com.java.spring.dto.AppDetailsDto;
 import com.java.spring.dto.DropDownDto;
 import com.java.spring.dto.DsrDto;
 import com.java.spring.dto.Emp;
 import com.java.spring.dto.NavritiDto;
+import com.java.spring.dto.PortfolioDto;
 import com.java.spring.model.PersonalImage;
 
 public interface EmpService {
@@ -37,7 +38,8 @@ public interface EmpService {
 	NavritiDto getIdeaDetailsByIdeaId(Long empUserId) throws Exception;
 
 	List<PortalConstants> retrieveConstants();
-	
-	Map<Long,String> getPortfolios();
-	Map<Long,String> getApps(Long id);
+
+	List<PortfolioDto> getPortfolios();
+
+	List<AppDetailsDto> getApps(Long id);
 }
