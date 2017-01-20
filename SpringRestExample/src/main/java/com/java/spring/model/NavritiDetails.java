@@ -22,7 +22,7 @@ public class NavritiDetails implements Serializable {
 	private Long ideaId;
 
 	@Column(name = "emp_user_id")
-	private Long sapId;
+	private Long empId;
 	
 	@Column(name = "idea_stage")
 	private String ideaStage;
@@ -99,20 +99,6 @@ public class NavritiDetails implements Serializable {
 	 */
 	public void setIdeaId(Long ideaId) {
 		this.ideaId = ideaId;
-	}
-
-	/**
-	 * @return the sapId
-	 */
-	public Long getSapId() {
-		return sapId;
-	}
-
-	/**
-	 * @param sapId the sapId to set
-	 */
-	public void setSapId(Long sapId) {
-		this.sapId = sapId;
 	}
 
 	/**
@@ -416,17 +402,12 @@ public class NavritiDetails implements Serializable {
 		return serialVersionUID;
 	}
 
-	@Override
-	public String toString() {
-		return "NavritiDetails [ideaId=" + ideaId + ", sapId=" + sapId + ", ideaStage=" + ideaStage + ", stageOutCome="
-				+ stageOutCome + ", SubmissionDate=" + SubmissionDate + ", portfolio=" + portfolio
-				+ ", applicationName=" + applicationName + ", submittedBy=" + submittedBy + ", ideaClassification="
-				+ ideaClassification + ", problemStatement=" + problemStatement + ", solutionDescription="
-				+ solutionDescription + ", ideationDate=" + ideationDate + ", perHourDollarRate=" + perHourDollarRate
-				+ ", annualEffortSavings=" + annualEffortSavings + ", smeReviewedDate=" + smeReviewedDate
-				+ ", councilReviewedDate=" + councilReviewedDate + ", clientReviewedDate=" + clientReviewedDate
-				+ ", implementationDate=" + implementationDate + ", savings=" + savings + ", elapsedTime=" + elapsedTime
-				+ ", client=" + client + ", comments=" + comments + ", technology=" + technology + "]";
+	public Long getEmpId() {
+		return empId;
 	}
-	
+
+	public void setEmpId(Long empId) {
+		this.empId = empId;
+	}
+
 }

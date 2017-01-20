@@ -224,7 +224,7 @@ public class EmpDaoImpl implements EmpDao {
 		List<NavritiDetails> navritiData = null;
 		Session session = this.sessionFactory.getCurrentSession();
 		Criteria crit = session.createCriteria(NavritiDetails.class);
-		crit.add(Restrictions.eq("sapId", empUserId));
+		crit.add(Restrictions.eq("empId", empUserId));
 		if (null != crit.list() && !crit.list().isEmpty()) {
 			navritiData = (List<NavritiDetails>) crit.list();
 		}

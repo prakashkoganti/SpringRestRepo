@@ -16,8 +16,6 @@ public class DsrDto {
 	private String applicationName;
 	private String taskDesc;
 	private String tdDate;
-	private Long ticketStatusId;
-	private String ticketStatus;
 	private Long workHours;
 	private Long empId;
 	private Long areaId;
@@ -78,22 +76,6 @@ public class DsrDto {
 
 	public void setApplicationName(String applicationName) {
 		this.applicationName = applicationName;
-	}
-
-	public Long getTicketStatusId() {
-		return ticketStatusId;
-	}
-
-	public void setTicketStatusId(Long ticketStatusId) {
-		this.ticketStatusId = ticketStatusId;
-	}
-
-	public String getTicketStatus() {
-		return ticketStatus;
-	}
-
-	public void setTicketStatus(String ticketStatus) {
-		this.ticketStatus = ticketStatus;
 	}
 
 	public Long getWorkHours() {
